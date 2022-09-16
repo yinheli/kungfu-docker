@@ -1,0 +1,4 @@
+- targets:
+    - "localhost:6080"
+  labels:
+    app: kungfu

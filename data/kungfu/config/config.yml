@@ -1,0 +1,14 @@
+dns_upstream:
+  - 1.2.4.8
+
+# hijack address pool
+network: 10.99.0.1/16
+
+# proxy
+proxy:
+  - name: hk
+    values:
+      - socks5://127.0.0.1:1080
+
+# prometheus metrics (optional)
+metrics: 0.0.0.0:6080

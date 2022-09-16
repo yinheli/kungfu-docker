@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: service
+    honor_labels: true
+    file_sd_configs:
+      - files:
+          - /config/*.yml
+        refresh_interval: 10s

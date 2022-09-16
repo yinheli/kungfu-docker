@@ -1,0 +1,40 @@
+version: "3"
+services:
+  kungfu:
+    build: .
+    hostname: kungfu
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data/kungfu/config:/config
+
+  prometheus:
+    image: prom/prometheus:v2.37.0
+    hostname: prometheus
+    restart: always
+    user: root
+    network_mode: host
+    environment:
+      - TZ=Asia/Shanghai
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+    volumes:
+      - ./data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus/data:/prometheus
+      - ./data/prometheus/config:/config
+
+  # default user/password: admin/admin
+  grafana:
+    image: grafana/grafana:9.1.2
+    hostname: grafana
+    restart: always
+    user: root
+    network_mode: host
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data/grafana:/var/lib/grafana
