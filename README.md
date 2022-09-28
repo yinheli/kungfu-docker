@@ -17,11 +17,17 @@ docker-compose up -d
 config
 
 - go `data sources` add Prometheus datasource, URL `http://localhost:9090`
-- import kungfu dashboard id: `16998`
+- import kungfu dashboard id: [`16998`](https://grafana.com/grafana/dashboards/16998-kungfu/)
 
 ## Upgrade
 
-> rebuild kungfu use latest version
+Checkout which version you are running.
+
+```bash
+docker-compose run kungfu --version
+```
+
+Rebuild kungfu to use latest version
 
 ```bash
 git pull
