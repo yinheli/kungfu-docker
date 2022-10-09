@@ -12,7 +12,7 @@ services:
       - ./data/kungfu/config:/config
 
   prometheus:
-    image: prom/prometheus:v2.37.0
+    image: prom/prometheus:v2.39.1
     hostname: prometheus
     restart: always
     user: root
@@ -24,12 +24,14 @@ services:
       - "--storage.tsdb.path=/prometheus"
     volumes:
       - ./data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./data/prometheus/data:/prometheus
       - ./data/prometheus/config:/config
+      - prometheus_data:/prometheus
+    depends_on:
+      - kungfu
 
   # default user/password: admin/admin
   grafana:
-    image: grafana/grafana:9.1.2
+    image: grafana/grafana:9.1.7
     hostname: grafana
     restart: always
     user: root
@@ -37,4 +39,10 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - ./data/grafana:/var/lib/grafana
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+volumes:
+  prometheus_data:
+  grafana_data:
