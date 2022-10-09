@@ -6,9 +6,13 @@ network: 10.99.0.1/16
 
 # proxy
 proxy:
-  - name: hk
+  - name: gfw
     values:
       - socks5://127.0.0.1:1080
+
+  - name: usa
+    values:
+      - socks5://127.0.0.1:1081
 
 # prometheus metrics (optional)
 metrics: 0.0.0.0:6080

@@ -1,0 +1,9 @@
+# spell-checker: disable
+
+# domain pattern base glob
+- type: domain
+  target: usa
+  values:
+    - "*tiktok*"
+    - "*byteoversea.com"
+    - "*openai.com"
